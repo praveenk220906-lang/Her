@@ -1,7 +1,221 @@
-<!doctype html><meta name=viewport content="width=device-width,initial-scale=1"><title>For You</title><style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle,#351044,#08060b 70%);color:white;font-family:Arial;text-align:center;overflow:hidden}main{min-height:100vh;display:grid;place-items:center;padding:22px}.c{width:92vw;max-width:390px;padding:32px 22px;border:1px solid #ff4fa3;border-radius:26px;background:#130a18e8;box-shadow:0 0 40px #ff197055}.h{font-size:52px}h1{font-size:28px}p{line-height:1.6;color:#ddd}.b{border:0;border-radius:30px;padding:14px 22px;background:#ff3f99;color:white;font-weight:bold;font-size:16px}.n{font-family:cursive;text-align:left;background:white;color:#35133e;padding:22px;border-radius:16px;max-height:58vh;overflow:auto;line-height:1.55}.x{position:fixed;color:#ff72b7;animation:f 6s linear infinite}@keyframes f{from{transform:translateY(110vh)}to{transform:translateY(-10vh)}}</style><main>
-<section class=c id=a><div class=h>💗</div><h1>Hey Zoya 👀</h1><p>You asked me for a surprise…<br>so I actually made one.</p><button class=b onclick="go(1)">Open it ✨</button></section>
-<section class="c" id=b hidden><div class=h>🇮🇳 → 🇳🇵</div><h1>Measuring your cuteness…</h1><h2 style="color:#ff69b4;font-size:42px">120%</h2><p>⚠️ TOO CUTE TO HANDLE</p><button class=b onclick="go(2)">There's more 👀</button></section>
-<section class="c" id=c hidden><h1>A little note for you 💌</h1><div class=n>Zoya,<br><br>I don't know if this will surprise you or not, but I hope it'll become a good memory of us.<br><br>You're someone who's close to me, even though you probably never thought you'd be. But I'm sure we'll meet someday—and I'm definitely going to throw you in a dustbin 😂. And btw, you're an idiot.<br><br>Just be yourself, bruh. That's what I like about you. And don't hide anything from me. We shared memes together, so let's share the pain together too.<br><br>You'll be there for me when I'm in pain, and just like that, I'll be there for you when you're in pain.<br><br>You're a good soul, and some people don't deserve that kindness because you're genuinely good.<br><br>Mark my words, bruh—we'll meet someday.<br><br>And let's match 🤙</div></section></main><script>
-function go(n){a.hidden=n!=0;b.hidden=n!=1;c.hidden=n!=2}for(let i=0;i<12;i++){let s=document.createElement('i');s.className='x';s.textContent='♡';s.style.left=Math.random()*100+'%';s.style.animationDelay=Math.random()*6+'s';document.body.append(s)}
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You Are Special!</title>
+  <style>
+    :root {
+      --bg-color: #0d0118;
+      --card-bg: #1c0a2a;
+      --pink-accent: #ff4d8d;
+      --pink-light: #ff80ab;
+      --text-color: #ffffff;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      padding: 20px;
+    }
+    .screen {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out forwards;
+    }
+    .screen.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--pink-accent);
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+    h1 { font-size: 2rem; margin-bottom: 5px; }
+    p { color: #d1b3e0; font-size: 1rem; }
+    .btn {
+      background: linear-gradient(135deg, #ff4d8d, #e91e63);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(255, 77, 141, 0.4);
+      transition: transform 0.2s;
+    }
+    .btn:hover { transform: scale(1.05); }
+    .progress-box {
+      background: var(--card-bg);
+      border: 1px solid var(--pink-accent);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .progress-bar-bg {
+      background: #33144a;
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+    .progress-bar-fill {
+      background: linear-gradient(90deg, #ff80ab, #ff4d8d);
+      height: 100%;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+    .warning {
+      color: #ff5252;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+    .cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .card-btn {
+      background: var(--card-bg);
+      border: 1px solid #3c1a53;
+      color: var(--pink-light);
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .card-btn.revealed {
+      background: #2a103c;
+      color: #ffffff;
+      border-color: var(--pink-accent);
+    }
+    .letter-box {
+      background: linear-gradient(135deg, #ffa4d4, #ff6fa5);
+      color: #2b0018;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: left;
+      line-height: 1.6;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+    .letter-box p { color: #2b0018; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="screen1" class="screen active">
+      <img
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZkZnFiOW5sZ3R5ZnNtb2ZsbTVmOXc5Ym1reTh6cnIyd2QzNmliayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif"
+        class="avatar" alt="Cute Avatar">
+      <h1>Hey Beautiful</h1>
+      <p>Do you even know how cute you are?</p>
+      <button class="btn" onclick="nextScreen(2)">Open My Heart ❤️</button>
+    </div>
+
+    <div id="screen2" class="screen">
+      <div class="progress-box">
+        <p>Measuring your cuteness...</p>
+        <h2 id="percent">0%</h2>
+        <div class="progress-bar-bg">
+          <div id="fill" class="progress-bar-fill"></div>
+        </div>
+        <p id="warning" class="warning" style="opacity: 0;">
+          ⚠️ WARNING: TOO CUTE TO HANDLE
+        </p>
+      </div>
+      <button id="meterNextBtn" class="btn" onclick="nextScreen(3)" style="display: none;">
+        See More →
+      </button>
+    </div>
+
+    <div id="screen3" class="screen">
+      <h2>Just for you</h2>
+      <p>Tap each one to reveal</p>
+      <div class="cards-list">
+        <button class="card-btn" onclick="revealCard(this, 'You look adorable')">💖</button>
+        <button class="card-btn" onclick="revealCard(this, 'You have the sweetest vibe')">💖</button>
+        <button class="card-btn" onclick="revealCard(this, 'You make things feel lighter')">💖</button>
+        <button class="card-btn" onclick="revealCard(this, 'You are naturally charming')">💖</button>
+        <button class="card-btn" onclick="revealCard(this, 'You make everything feel special')">💖</button>
+      </div>
+      <button class="btn" onclick="nextScreen(4)">See More →</button>
+    </div>
+
+    <div id="screen4" class="screen">
+      <h2>A little note for you</h2>
+      <div class="letter-box">
+        <div style="text-align: center; font-size: 1.5rem; margin-bottom: 10px;">💖</div>
+        <p>
+          I just wanted to tell you something... you really are special in a
+          way that's hard to explain. There's a softness in the way you talk,
+          a sweetness in the way you smile, and something genuine about you
+          that just feels good to be around.
+        </p>
+      </div>
+      <button class="btn" onclick="nextScreen(5)">One more thing →</button>
+    </div>
+
+    <div id="screen5" class="screen">
+      <img
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2ZkZnFiOW5sZ3R5ZnNtb2ZsbTVmOXc5Ym1reTh6cnIyd2QzNmliayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KztT2c4u8mYYUiMKdJ/giphy.gif"
+        class="avatar" style="width:150px; height:150px;" alt="Bear GIF">
+      <h2>You'll always be special to me</h2>
+    </div>
+  </div>
+
+  <script>
+    function nextScreen(screenNum) {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById("screen" + screenNum).classList.add("active");
+      if (screenNum === 2) startMeter();
+    }
+
+    function startMeter() {
+      let count = 0;
+      const fill = document.getElementById("fill");
+      const percent = document.getElementById("percent");
+      const warning = document.getElementById("warning");
+      const nextBtn = document.getElementById("meterNextBtn");
+
+      const interval = setInterval(() => {
+        count++;
+        percent.innerText = count + "%";
+        fill.style.width = Math.min(count, 100) + "%";
+
+        if (count >= 120) {
+          clearInterval(interval);
+          warning.style.opacity = "1";
+          nextBtn.style.display = "inline-block";
+        }
+      }, 30);
+    }
+
+    function revealCard(btn, text) {
+      btn.innerText = text;
+      btn.classList.add("revealed");
+    }
+  </script>
+</body>
+</html>
